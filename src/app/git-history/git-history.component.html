@@ -1,0 +1,47 @@
+<!-- <ngx-graph
+  [links]="links"
+  [nodes]="nodes"
+  [layout]="'dagre'"
+  [draggingEnabled]="false"
+  [zoomLevel]="1"
+  [enableZoom]="true"
+  [autoZoom]="true"
+  [panOnZoom]="true"
+  [zoomSpeed]="0.1"
+  [curve]="'linear'"
+>
+</ngx-graph> -->
+
+<ngx-graph
+  class="chart-container"
+  [view]="[500, 200]"
+  [links]="[
+    {
+      id: 'a',
+      source: 'first',
+      target: 'second',
+      label: 'is parent of'
+    },
+    {
+      id: 'b',
+      source: 'first',
+      target: 'third',
+      label: 'custom label'
+    }
+  ]"
+  [nodes]="[
+    {
+      id: 'first',
+      label: 'A'
+    },
+    {
+      id: 'second',
+      label: 'B'
+    },
+    {
+      id: 'third',
+      label: 'C'
+    }
+  ]"
+>
+</ngx-graph>
