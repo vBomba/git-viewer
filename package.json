@@ -19,7 +19,7 @@
     "@angular/platform-browser-dynamic": "^16.2.12",
     "@angular/router": "^16.2.12",
     "@swimlane/ngx-charts": "^20.1.0",
-    "@swimlane/ngx-graph": "^9.0.1",
+    "@swimlane/ngx-graph": "^10.0.0-alpha.0",
     "d3": "^7.9.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

@@ -1,47 +1,90 @@
-<!-- <ngx-graph
+<ngx-graph
   [links]="links"
   [nodes]="nodes"
-  [layout]="'dagre'"
-  [draggingEnabled]="false"
-  [zoomLevel]="1"
+  layout="dagreCluster"
   [enableZoom]="true"
   [autoZoom]="true"
-  [panOnZoom]="true"
-  [zoomSpeed]="0.1"
-  [curve]="'linear'"
+  (select)="onNodeSelect($event)"
 >
-</ngx-graph> -->
+  <ng-template #defsTemplate>
+    <svg:marker
+      id="arrow"
+      viewBox="0 -5 10 10"
+      refX="8"
+      refY="0"
+      markerWidth="4"
+      markerHeight="4"
+      orient="auto"
+    >
+      <svg:path d="M0,-5L10,0L0,5" class="arrow-head" />
+    </svg:marker>
+  </ng-template>
 
-<ngx-graph
-  class="chart-container"
-  [view]="[500, 200]"
-  [links]="[
-    {
-      id: 'a',
-      source: 'first',
-      target: 'second',
-      label: 'is parent of'
-    },
-    {
-      id: 'b',
-      source: 'first',
-      target: 'third',
-      label: 'custom label'
-    }
-  ]"
-  [nodes]="[
-    {
-      id: 'first',
-      label: 'A'
-    },
-    {
-      id: 'second',
-      label: 'B'
-    },
-    {
-      id: 'third',
-      label: 'C'
-    }
-  ]"
->
+  <ng-template #clusterTemplate let-cluster>
+    <svg:g class="node cluster">
+      <svg:rect
+        rx="5"
+        ry="5"
+        [attr.width]="cluster.dimension.width"
+        [attr.height]="cluster.dimension.height"
+        [attr.fill]="cluster.data.color"
+      />
+    </svg:g>
+  </ng-template>
+
+  <ng-template #nodeTemplate let-node>
+    <svg:g class="node">
+      <svg:rect
+        [attr.width]="node.dimension.width"
+        [attr.height]="node.dimension.height"
+        [attr.fill]="node.data.branchColor"
+      />
+      <svg:text alignment-baseline="central" [attr.x]="10">
+        <!-- [attr.y]="node.dimension.height / 2" -->
+        <svg:tspan x="10" dy="1.2em">{{ node.label.split("\n")[0] }}</svg:tspan>
+        <svg:tspan x="10" dy="1.2em">{{ node.label.split("\n")[1] }}</svg:tspan>
+        <svg:tspan x="10" dy="1.2em">{{ node.label.split("\n")[2] }}</svg:tspan>
+      </svg:text>
+    </svg:g>
+  </ng-template>
+
+  <ng-template #linkTemplate let-link>
+    <svg:g class="edge">
+      <svg:path
+        class="line"
+        stroke-width="2"
+        marker-end="url(#arrow)"
+      ></svg:path>
+      <svg:text class="edge-label" text-anchor="middle">
+        <textPath
+          class="text-path"
+          [attr.href]="'#' + link.id"
+          [style.dominant-baseline]="link.dominantBaseline"
+          startOffset="50%"
+        >
+          {{ link.label }}
+          <!-- <svg:tspan x="10" dy="1.2em">{{ node.label.split("\n")[0] }}</svg:tspan>
+          <svg:tspan x="10" dy="1.2em">{{ node.label.split("\n")[1] }}</svg:tspan>
+          <svg:tspan x="10" dy="1.2em">{{ node.label.split("\n")[2] }}</svg:tspan> -->
+        </textPath>
+      </svg:text>
+    </svg:g>
+  </ng-template>
+  <!-- <ng-template #nodeTemplate let-node>
+    <svg:g [attr.fill]="node.data.">
+      <svg:rect
+        [attr.width]="250"
+        [attr.height]="100"
+        rx="10"
+        ry="10"
+        [attr.fill]="node.data.branchColor"
+        stroke="#333"
+      ></svg:rect>
+      <svg:text x="10" y="20" fill="white">
+        <svg:tspan x="10" dy="1.2em">{{ node.label.split("\n")[0] }}</svg:tspan>
+        <svg:tspan x="10" dy="1.2em">{{ node.label.split("\n")[1] }}</svg:tspan>
+        <svg:tspan x="10" dy="1.2em">{{ node.label.split("\n")[2] }}</svg:tspan>
+      </svg:text>
+    </svg:g>
+  </ng-template> -->
 </ngx-graph>
