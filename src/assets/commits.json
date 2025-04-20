@@ -1,11 +1,19 @@
 [
   {
+    "hash": "190c140bd00ebf31d5adaa90e8516ebbab85c918",
+    "author": "Vasyl Bomba",
+    "date": "Sun Apr 20 11:54:31 2025 +0200",
+    "message": "initial commit",
+    "source": "ebb708d6d6dd5710873b7c8d354fb3db9dc67b34",
+    "branches": ["dev"]
+  },
+  {
     "hash": "ebb708d6d6dd5710873b7c8d354fb3db9dc67b34",
     "author": "Vasyl Bomba",
     "date": "Sat Apr 19 14:00:49 2025 +0200",
     "message": "update angular to 16",
     "source": "39a91e8441551204208d2b4713bfbddac340b509",
-    "branches": ["dev"]
+    "branches": ["dev","main"]
   },
   {
     "hash": "39a91e8441551204208d2b4713bfbddac340b509",
@@ -13,7 +21,7 @@
     "date": "Sat Apr 19 13:57:44 2025 +0200",
     "message": "create git history component",
     "source": "3d035d4d55819f5f2dc9fbb0e7c0cc4929b65f9c",
-    "branches": ["dev"]
+    "branches": ["dev","main"]
   },
   {
     "hash": "3d035d4d55819f5f2dc9fbb0e7c0cc4929b65f9c",
@@ -21,6 +29,6 @@
     "date": "Sat Apr 19 13:38:59 2025 +0200",
     "message": "initial commit",
     "source": "",
-    "branches": ["dev", "master"]
+    "branches": ["dev","main"]
   }
 ]
