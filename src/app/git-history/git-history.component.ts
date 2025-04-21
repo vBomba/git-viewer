@@ -15,6 +15,7 @@ import { Commit, GitLink, GitNode } from './interfaces';
 export class GitHistoryComponent {
   nodes: GitNode[] = [];
   links: GitLink[] = [];
+  infoContainer?: { position: { x: number; y: number }; label: string };
 
   constructor(private http: HttpClient) {}
   ngOnInit() {
@@ -26,7 +27,8 @@ export class GitHistoryComponent {
   buildGraph(commits: Commit[]) {
     this.nodes = commits.map((c: any) => ({
       id: c.hash,
-      label: `${c.author}\n${this.getFormattedDate(c.date)}`,
+      label: '',
+      // label: `${c.author}\n${this.getFormattedDate(c.date)}`,
       data: {
         ...c,
         branchColor: this.colorForBranch(c.branch), // визначаємо колір для гілки
@@ -107,10 +109,13 @@ export class GitHistoryComponent {
     return formatted;
   }
 
-  onNodeSelect(test: any): void {
-    console.log(test);
-
-    test.label = test.id;
-    test.data.branchColor = '#f58231';
+  onNodeSelect(paintedCommit: any): void {
+    this.infoContainer = {
+      position: paintedCommit.position,
+      label: `
+      ${paintedCommit.id}<br>${paintedCommit.data.message}<br>${
+        paintedCommit.data.author
+      }<br>(${this.getFormattedDate(paintedCommit.data.date)})`,
+    };
   }
 }

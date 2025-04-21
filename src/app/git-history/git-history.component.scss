@@ -3,3 +3,16 @@ ngx-graph {
   height: 600px;
   border: 1px solid #ccc;
 }
+
+.info-container {
+  position: absolute;
+  background-color: #c7f196;
+  border: 1px solid #096e1f;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  font-size: 10px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}

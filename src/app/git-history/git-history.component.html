@@ -4,6 +4,7 @@
   layout="dagreCluster"
   [enableZoom]="true"
   [autoZoom]="true"
+  [panOnZoom]="false"
   (select)="onNodeSelect($event)"
 >
   <ng-template #defsTemplate>
@@ -34,9 +35,13 @@
 
   <ng-template #nodeTemplate let-node>
     <svg:g class="node">
+      <!-- <svg:circle
+        [attr.r]="node.dimension.height / 2"
+       
+      -->
       <svg:rect
         [attr.width]="node.dimension.width"
-        [attr.height]="node.dimension.height"
+        [attr.height]="node.dimension.width"
         [attr.fill]="node.data.branchColor"
       />
       <svg:text alignment-baseline="central" [attr.x]="10">
@@ -70,21 +75,12 @@
       </svg:text>
     </svg:g>
   </ng-template>
-  <!-- <ng-template #nodeTemplate let-node>
-    <svg:g [attr.fill]="node.data.">
-      <svg:rect
-        [attr.width]="250"
-        [attr.height]="100"
-        rx="10"
-        ry="10"
-        [attr.fill]="node.data.branchColor"
-        stroke="#333"
-      ></svg:rect>
-      <svg:text x="10" y="20" fill="white">
-        <svg:tspan x="10" dy="1.2em">{{ node.label.split("\n")[0] }}</svg:tspan>
-        <svg:tspan x="10" dy="1.2em">{{ node.label.split("\n")[1] }}</svg:tspan>
-        <svg:tspan x="10" dy="1.2em">{{ node.label.split("\n")[2] }}</svg:tspan>
-      </svg:text>
-    </svg:g>
-  </ng-template> -->
 </ngx-graph>
+
+<div
+  *ngIf="infoContainer"
+  class="info-container"
+  [style.left.px]="infoContainer.position.x"
+  [style.top.px]="infoContainer.position.y"
+  [innerHtml]="infoContainer.label"
+></div>
